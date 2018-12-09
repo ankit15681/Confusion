@@ -1,17 +1,10 @@
 import React, {Component} from 'react';
 import {Card, CardImg, CardText, CardTitle, CardBody} from 'reactstrap';
-import Menu from './MenuComponent';
 
 class DishDetail extends Component{
 
- constructor(props){
-
-     super(props);
-
- }
-
  renderDish(dish){
-        return( <div>
+        return( <div >
                 <CardImg top width="100%" src={dish.image} alt={dish.name} />
                 <CardBody>
                   <CardTitle>{dish.name}</CardTitle>
@@ -24,7 +17,7 @@ class DishDetail extends Component{
     renderComments(comments){
         
         const listItems = comments.map((comments) =>
-        <li key={comments.id}>{comments.comment}<br></br><br></br>-- {comments.author},  {(new Date(comments.date)).toDateString()}<br></br><br></br></li> 
+        <li key={comments.id}>{comments.comment}<br></br><br></br>-- {comments.author},  {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))}<br></br><br></br></li> 
         
          );
          return(
@@ -38,8 +31,8 @@ class DishDetail extends Component{
    render(){
       if(this.props.dish!=null){
         return (
-                <div className="row">
-            
+                <div className="container">
+                 <div className = "row">
                  <div className="col-12 col-md-5 m-1">
                    <Card>
                     {this.renderDish(this.props.dish)}
@@ -54,7 +47,7 @@ class DishDetail extends Component{
                      </ul>
                  </div>
 
- 
+                </div>
                </div>
             
         );
